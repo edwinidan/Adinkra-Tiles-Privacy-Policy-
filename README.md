@@ -10,11 +10,13 @@ This page is designed to be hosted publicly (e.g., via GitHub Pages, Vercel, Net
 - **Fonts:** Custom typography powered by Google Fonts (*Cinzel* and *Nunito*).
 - **Responsive:** Designed to scale fluidly from desktop displays to mobile screens.
 
-## Files In This Folder
-- `index.html`: The main privacy policy document containing all disclosure sections.
-- `styles.css`: The responsive styling sheet.
-- `adinkra tiles logo.png`: The game icon/logo displayed in the website header.
+## Files
+- `public/index.html`: The main privacy policy document containing all disclosure sections.
+- `public/styles.css`: The responsive styling sheet.
+- `public/adinkra tiles logo.png`: The game icon/logo displayed in the website header.
+- `public/app-ads.txt`: The Google AdMob app-ads declaration.
 - `README.md`: This file.
+- `walkthrough.md`: Notes on the static site structure.
 
 ## How to Preview Locally
 
@@ -26,14 +28,14 @@ If you are using Visual Studio Code, you can install the **Live Server** extensi
 ### Option 2: Python (Built-in)
 If you have Python installed, navigate to this folder in your terminal and run:
 ```bash
-python3 -m http.server 8000
+python3 -m http.server 8000 --directory public
 ```
 Then open your browser and navigate to `http://localhost:8000`.
 
 ### Option 3: Node.js (npx)
 If you have Node.js installed, you can start a simple server using:
 ```bash
-npx serve .
+npx serve public
 ```
 Then open the address output in the terminal (usually `http://localhost:3000` or `http://localhost:5000`).
 
