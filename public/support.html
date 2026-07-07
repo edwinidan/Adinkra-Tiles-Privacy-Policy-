@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adinkra Tiles Support & Feedback</title>
+    <meta name="description" content="App Support and feedback portal for Adinkra Tiles, a Ghanaian-inspired Mahjong solitaire puzzle game. Contact us here.">
+    <!-- Google Fonts: Cinzel for headers and Nunito for readable body text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Nunito:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="adinkra%20tiles%20logo.png">
+</head>
+<body>
+
+    <header class="app-header">
+        <div class="header-container">
+            <a href="index.html" style="text-decoration: none; color: inherit; display: contents;" id="link-header-home">
+                <img src="adinkra tiles logo.png" alt="Adinkra Tiles Logo" class="app-logo" id="app-logo-img">
+                <h1 class="app-title">Adinkra Tiles</h1>
+            </a>
+            <p class="app-subtitle">Customer Support</p>
+            <p class="last-updated">We're here to help you enjoy your gameplay</p>
+        </div>
+    </header>
+
+    <div class="main-layout-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar-nav" id="navigation-sidebar">
+            <h2 class="toc-title">Menu</h2>
+            <nav class="toc-links">
+                <a href="index.html" class="toc-link" id="link-menu-privacy">Privacy Policy</a>
+                <a href="support.html" class="toc-link active" id="link-menu-support">Customer Support</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content Card -->
+        <main class="content-card" id="support-content">
+            <!-- Section 1: Introduction -->
+            <section class="policy-section">
+                <h2>App Support &amp; Feedback</h2>
+                <p>Welcome to the <strong>Adinkra Tiles</strong> support center. Whether you've run into technical issues, found a bug, want to request a feature, or simply want to share your ideas, we're dedicated to helping you. Please fill out the contact form below or email us directly.</p>
+                
+                <div class="contact-card">
+                    <p><strong>Primary Support Email:</strong> <a href="mailto:edwinidan07@gmail.com" id="link-primary-email">edwinidan07@gmail.com</a></p>
+                    <p><strong>Developer Email:</strong> <a href="mailto:wesleyconsults@gmail.com" id="link-secondary-email">wesleyconsults@gmail.com</a></p>
+                    <p><strong>Response Time:</strong> We typically review and respond to all support requests within 24 to 48 hours.</p>
+                </div>
+            </section>
+
+            <!-- Section 2: Contact Form -->
+            <section class="policy-section">
+                <h2>Contact Support</h2>
+                <form id="support-form" class="support-form-layout">
+                    <div class="form-group">
+                        <label for="user-name">Your Name <span class="required-indicator">*</span></label>
+                        <input type="text" id="user-name" name="name" autocomplete="name" required placeholder="Enter your full name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="user-email">Your Email Address <span class="required-indicator">*</span></label>
+                        <input type="email" id="user-email" name="email" autocomplete="email" required placeholder="Enter your email address">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="issue-category">Category of Inquiry <span class="required-indicator">*</span></label>
+                        <select id="issue-category" name="category" required>
+                            <option value="" disabled selected>Select a category...</option>
+                            <option value="Technical Support">Technical Support / Bug Report</option>
+                            <option value="Gameplay Question">Gameplay or Level Inquiries</option>
+                            <option value="Save & Progress">Save States / Local Progress Issues</option>
+                            <option value="Feedback & Suggestions">Feedback &amp; Suggestions</option>
+                            <option value="General Inquiry">General Inquiry</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Detailed Message <span class="required-indicator">*</span></label>
+                        <textarea id="message" name="message" required minlength="10" placeholder="Please describe your issue, feedback, or inquiry in detail..." rows="6"></textarea>
+                        <span id="char-counter" class="hint">Minimum 10 characters required.</span>
+                    </div>
+
+                    <div class="alert-box support-info-box" id="feedback-alert" style="display: none;">
+                        <!-- Status/Success/Error message will be dynamically injected here -->
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" id="submit-button" class="btn btn-primary">
+                            <span class="btn-text">Open Mail Client</span>
+                        </button>
+                        <button type="button" id="copy-button" class="btn btn-secondary">
+                            <span class="btn-text">Copy Message Details</span>
+                        </button>
+                    </div>
+                </form>
+            </section>
+        </main>
+    </div>
+
+    <footer class="app-footer">
+        <div class="footer-container">
+            <p>&copy; 2026 Wesley Consults. All rights reserved.</p>
+            <p>Adinkra Tiles is a puzzle game celebrating Ghanaian culture.</p>
+        </div>
+    </footer>
+
+    <!-- Client-side Logic for Form Submission and Mailto generation -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('support-form');
+            const messageInput = document.getElementById('message');
+            const charCounter = document.getElementById('char-counter');
+            const feedbackAlert = document.getElementById('feedback-alert');
+            const copyButton = document.getElementById('copy-button');
+            const submitButton = document.getElementById('submit-button');
+
+            // Live character counter logic
+            messageInput.addEventListener('input', () => {
+                const len = messageInput.value.length;
+                if (len < 10) {
+                    charCounter.textContent = `${10 - len} more character${10 - len === 1 ? '' : 's'} required.`;
+                    charCounter.style.color = '#C53030';
+                } else {
+                    charCounter.textContent = `${len} characters entered.`;
+                    charCounter.style.color = 'var(--text-muted)';
+                }
+            });
+
+            // Show feedback utility
+            function showFeedback(message, type) {
+                feedbackAlert.className = `alert-box support-info-box ${type}`;
+                feedbackAlert.innerHTML = message;
+                feedbackAlert.style.display = 'block';
+                feedbackAlert.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+
+            // Construct structured message block
+            function buildEmailContent() {
+                const name = document.getElementById('user-name').value.trim();
+                const email = document.getElementById('user-email').value.trim();
+                const category = document.getElementById('issue-category').value;
+                const message = messageInput.value.trim();
+
+                const text = `Adinkra Tiles Support Request\n` +
+                             `============================\n` +
+                             `Developer: Wesley Consults\n` +
+                             `Date: ${new Date().toLocaleDateString()}\n` +
+                             `----------------------------\n` +
+                             `Sender Name: ${name}\n` +
+                             `Sender Email: ${email}\n` +
+                             `Category: ${category}\n` +
+                             `----------------------------\n` +
+                             `Message details:\n` +
+                             `${message}\n\n` +
+                             `----------------------------\n` +
+                             `Sent via Adinkra Tiles Support Page`;
+                return { name, email, category, message, formattedText: text };
+            }
+
+            // Form Submit / Mailto logic
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                if (!form.checkValidity()) {
+                    showFeedback('<strong>Please correct the form errors:</strong> Fill in all required fields.', 'error');
+                    return;
+                }
+
+                const data = buildEmailContent();
+                const primaryRecipient = 'edwinidan07@gmail.com';
+                const secondaryRecipient = 'wesleyconsults@gmail.com';
+                
+                // Construct mailto link
+                const subject = encodeURIComponent(`Adinkra Tiles Support: [${data.category}] from ${data.name}`);
+                const body = encodeURIComponent(data.formattedText);
+                
+                // Primary to edwinidan07@gmail.com and CC/BCC to secondary
+                const mailtoLink = `mailto:${primaryRecipient}?cc=${secondaryRecipient}&subject=${subject}&body=${body}`;
+                
+                // Attempt to open email client
+                window.location.href = mailtoLink;
+
+                showFeedback(
+                    `<strong>Email Client Launched!</strong> We have opened your device's default email client. <br>` +
+                    `If it did not launch automatically, you can send an email to <a href="mailto:${primaryRecipient}">${primaryRecipient}</a> with the details copied using the <strong>Copy Message Details</strong> button below.`, 
+                    'success'
+                );
+            });
+
+            // Clipboard Copy logic
+            copyButton.addEventListener('click', () => {
+                const name = document.getElementById('user-name').value.trim();
+                const email = document.getElementById('user-email').value.trim();
+                const category = document.getElementById('issue-category').value;
+                const message = messageInput.value.trim();
+
+                if (!name || !email || !category || message.length < 10) {
+                    showFeedback('<strong>Validation Error:</strong> Please fill in all fields (with at least 10 characters in the message) before copying.', 'error');
+                    return;
+                }
+
+                const data = buildEmailContent();
+
+                navigator.clipboard.writeText(data.formattedText)
+                    .then(() => {
+                        const originalText = copyButton.querySelector('.btn-text').textContent;
+                        copyButton.querySelector('.btn-text').textContent = 'Copied!';
+                        copyButton.style.backgroundColor = '#E6FFFA';
+                        copyButton.style.borderColor = '#319795';
+                        
+                        setTimeout(() => {
+                            copyButton.querySelector('.btn-text').textContent = originalText;
+                            copyButton.style.backgroundColor = '';
+                            copyButton.style.borderColor = '';
+                        }, 2500);
+
+                        showFeedback('<strong>Copied to clipboard!</strong> You can now paste the formatted details directly into your email client.', 'success');
+                    })
+                    .catch(err => {
+                        // Fallback text area for older devices/browsers
+                        const textArea = document.createElement('textarea');
+                        textArea.value = data.formattedText;
+                        textArea.style.position = 'fixed';
+                        textArea.style.left = '-9999px';
+                        document.body.appendChild(textArea);
+                        textArea.select();
+                        try {
+                            document.execCommand('copy');
+                            showFeedback('<strong>Copied to clipboard (fallback)!</strong> You can now paste the details directly into your email.', 'success');
+                        } catch (copyErr) {
+                            showFeedback('<strong>Copy Failed:</strong> Please select and copy the text manually from the alert box.', 'error');
+                        }
+                        document.body.removeChild(textArea);
+                    });
+            });
+        });
+    </script>
+</body>
+</html>
